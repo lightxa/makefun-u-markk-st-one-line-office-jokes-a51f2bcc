@@ -3,11 +3,16 @@
 
 Writes a single original one-line joke about office life to
 /output/entry.txt. Pure standard library, deterministic, no network.
+
+The joke turns on one concrete office detail (the out-of-office reply),
+stays deadpan, and lands its laugh in the last few words.
 """
 
+import os
+
 JOKE = (
-    "I asked everyone to stop replying-all by replying-all, "
-    "and now the thread has its own HR case."
+    "My out-of-office says I'm on holiday, and my manager replied "
+    "asking if I could just quickly check one thing from the beach."
 )
 
 
@@ -17,8 +22,6 @@ def main() -> None:
     assert 1 <= len(text) <= 199, "entry must be 1 to 199 characters"
     assert text.strip(), "entry must not be only whitespace"
     out_dir = "/output"
-    import os
-
     os.makedirs(out_dir, exist_ok=True)
     with open(os.path.join(out_dir, "entry.txt"), "w", encoding="utf-8") as f:
         f.write(text)
